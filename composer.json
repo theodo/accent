@@ -1,0 +1,17 @@
+{
+    "name": "socle/accent-bundle",
+    "description": "Access Control Checker Easy Neat Thorough",
+    "type": "static-analysis-tool",
+    "require": {
+        "php": "^7.1.3",
+        "symfony/routing": "^4.2",
+        "api-platform/core": "^2.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Molin",
+            "email": "paulm@theodo.fr"
+        }
+    ]
+}
