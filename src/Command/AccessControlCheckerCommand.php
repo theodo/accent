@@ -104,7 +104,7 @@ class AccessControlCheckerCommand extends Command
 
         $isGranted = 'Cette route n\'est pas liée à API Platform.';
 
-        if ($this->isControllerCorrespondingToApiPlatform($controller)) {
+        if ($controller && $this->isControllerCorrespondingToApiPlatform($controller)) {
             $isGranted = $this->getAccessControlDataForApiPlatform($route);
         }
 

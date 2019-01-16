@@ -2,7 +2,7 @@
 
 namespace Socle\AccentBundle\Descriptor;
 
-use App\AccessControl\RouteAccessControlData;
+use Socle\AccentBundle\AccessControl\RouteAccessControlData;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -11,6 +11,7 @@ class AccessControlDescriptor
     private $output;
 
     /**
+     * @param OutputInterface $output
      * @param RouteAccessControlData[] $routeAccessControlData
      */
     public function describe(OutputInterface $output, array $routeAccessControlData)
