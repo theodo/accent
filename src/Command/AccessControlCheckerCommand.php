@@ -16,6 +16,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 class AccessControlCheckerCommand extends Command
 {
+    const NO_ACCESS_CONTROL = 'NO_ACCESS_CONTROL';
+    const NOT_API_PLATFORM_ROUTE = 'NOT_API_PLATFORM_ROUTE';
+    const RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND';
+    const RESOURCE_UNRELATED_ROUTE = 'RESOURCE_UNRELATED_ROUTE';
+
     protected static $defaultName = 'socle:access-control';
     private $router;
     private $resourceMetadataFactory;
@@ -102,7 +107,7 @@ class AccessControlCheckerCommand extends Command
     {
         $controller = $route->getDefault('_controller');
 
-        $isGranted = 'Cette route n\'est pas liée à API Platform.';
+        $isGranted = self::NOT_API_PLATFORM_ROUTE;
 
         if ($controller && $this->isControllerCorrespondingToApiPlatform($controller)) {
             $isGranted = $this->getAccessControlDataForApiPlatform($route);
@@ -125,7 +130,7 @@ class AccessControlCheckerCommand extends Command
     {
         $resourceClass = $route->getDefault('_api_resource_class');
 
-        $isGranted = 'Cette route n\'est pas liée à une ressource.';
+        $isGranted = self::RESOURCE_UNRELATED_ROUTE;
 
         if ($resourceClass) {
             try {
@@ -133,10 +138,10 @@ class AccessControlCheckerCommand extends Command
                 $attributes = AttributesExtractor::extractAttributes($route->getDefaults());
                 $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'access_control', null, true);
                 if (is_null($isGranted)) {
-                    $isGranted = 'Pas de contrôle d\'accès.';
+                    $isGranted = self::NO_ACCESS_CONTROL;
                 }
             } catch (ResourceClassNotFoundException $e) {
-                $isGranted = 'La ressource liée à cette route est introuvable.';
+                $isGranted = self::RESOURCE_NOT_FOUND;
             }
         }
 
