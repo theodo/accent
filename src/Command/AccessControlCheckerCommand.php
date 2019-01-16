@@ -24,6 +24,7 @@ class AccessControlCheckerCommand extends Command
     protected static $defaultName = 'socle:access-control';
     private $router;
     private $resourceMetadataFactory;
+    private $unprotectedRoutes = 0;
 
     public function __construct(RouterInterface $router, ResourceMetadataFactoryInterface $resourceMetadataFactory)
     {
@@ -48,9 +49,9 @@ class AccessControlCheckerCommand extends Command
     {
         $output->writeln(
             [
-                'ACCENT',
-                '======',
-                '',
+                '╔════════╗',
+                '║ ACCENT ║',
+                '╚════════╝',
             ]
         );
 
@@ -66,6 +67,12 @@ class AccessControlCheckerCommand extends Command
             $io,
             $allRoutesAccessControlData
         );
+
+        $output->writeln($this->unprotectedRoutes." unprotected route(s)");
+
+        $exitCode = (0 < $this->unprotectedRoutes) ? 1 : 0;
+
+        return $exitCode;
     }
 
     /**
@@ -139,6 +146,7 @@ class AccessControlCheckerCommand extends Command
                 $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'access_control', null, true);
                 if (is_null($isGranted)) {
                     $isGranted = self::NO_ACCESS_CONTROL;
+                    $this->unprotectedRoutes++;
                 }
             } catch (ResourceClassNotFoundException $e) {
                 $isGranted = self::RESOURCE_NOT_FOUND;
