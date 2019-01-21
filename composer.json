@@ -1,0 +1,29 @@
+{
+    "name": "forge/accent-bundle",
+    "description": "Access Control Checker Easy Neat Thorough",
+    "type": "static-analysis-tool",
+    "require": {
+        "php": "^7.1",
+        "symfony/config": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony/routing": "^4.0",
+        "api-platform/core": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Forge\\AccentBundle\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Molin",
+            "email": "paulm@theodo.fr"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^0.11.1"
+    }
+}

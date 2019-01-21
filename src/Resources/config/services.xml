@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service class="Forge\AccentBundle\Command\AccessControlCheckerCommand"
+                 id="forge_accent.access_control_checker_command">
+            <argument type="service" id="router"/>
+            <argument type="service" id="api_platform.metadata.resource.metadata_factory"/>
+            <tag name="console.command"/>
+        </service>
+        <service id="Forge\AccentBundle\Command\AccessControlCheckerCommand"
+                 alias="forge_accent.access_control_checker_command" />
+    </services>
+
+</container>
