@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -105,12 +106,12 @@ class AccessControlCheckerCommand extends Command
     }
 
     /**
-     * @param $name
-     * @param \Symfony\Component\Routing\Route $route
+     * @param string $name
+     * @param Route  $route
      *
      * @return RouteAccessControlData
      */
-    protected function getRouteAccessControlData($name, \Symfony\Component\Routing\Route $route): RouteAccessControlData
+    protected function getRouteAccessControlData(string $name, Route $route): RouteAccessControlData
     {
         $controller = $route->getDefault('_controller');
 
@@ -133,7 +134,7 @@ class AccessControlCheckerCommand extends Command
      *
      * @return string
      */
-    protected function getAccessControlDataForApiPlatform(\Symfony\Component\Routing\Route $route): string
+    protected function getAccessControlDataForApiPlatform(Route $route): string
     {
         $resourceClass = $route->getDefault('_api_resource_class');
 
