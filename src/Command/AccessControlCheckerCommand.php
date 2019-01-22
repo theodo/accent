@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Forge\AccentBundle\Command;
 
 use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
@@ -69,7 +71,7 @@ class AccessControlCheckerCommand extends Command
             $allRoutesAccessControlData
         );
 
-        $output->writeln($this->unprotectedRoutes." unprotected route(s)");
+        $output->writeln($this->unprotectedRoutes.' unprotected route(s)');
 
         $exitCode = (0 < $this->unprotectedRoutes) ? 1 : 0;
 
@@ -85,7 +87,7 @@ class AccessControlCheckerCommand extends Command
     {
         $apiPlatformPrefix = 'api_platform';
 
-        return 0 === strpos($controller, $apiPlatformPrefix);
+        return 0 === mb_strpos($controller, $apiPlatformPrefix);
     }
 
     /**
@@ -97,6 +99,7 @@ class AccessControlCheckerCommand extends Command
     {
         $allAccessControlRouteData = [];
 
+        /** @var string $name */
         foreach ($routes as $name => $route) {
             $accessControlRouteData = $this->getRouteAccessControlData($name, $route);
             $allAccessControlRouteData[] = $accessControlRouteData;
@@ -145,9 +148,9 @@ class AccessControlCheckerCommand extends Command
                 $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
                 $attributes = AttributesExtractor::extractAttributes($route->getDefaults());
                 $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'access_control', null, true);
-                if (is_null($isGranted)) {
+                if (null === $isGranted) {
                     $isGranted = self::NO_ACCESS_CONTROL;
-                    $this->unprotectedRoutes++;
+                    ++$this->unprotectedRoutes;
                 }
             } catch (ResourceClassNotFoundException $e) {
                 $isGranted = self::RESOURCE_NOT_FOUND;
