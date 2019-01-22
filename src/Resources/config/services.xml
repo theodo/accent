@@ -5,14 +5,14 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service class="Socle\AccentBundle\Command\AccessControlCheckerCommand"
-                 id="socle_accent.access_control_checker_command">
+        <service class="Forge\AccentBundle\Command\AccessControlCheckerCommand"
+                 id="forge_accent.access_control_checker_command">
             <argument type="service" id="router"/>
             <argument type="service" id="api_platform.metadata.resource.metadata_factory"/>
             <tag name="console.command"/>
         </service>
-        <service id="Socle\AccentBundle\Command\AccessControlCheckerCommand"
-                 alias="socle_accent.access_control_checker_command" />
+        <service id="Forge\AccentBundle\Command\AccessControlCheckerCommand"
+                 alias="forge_accent.access_control_checker_command" />
     </services>
 
 </container>

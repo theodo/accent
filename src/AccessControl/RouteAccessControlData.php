@@ -1,6 +1,6 @@
 <?php
 
-namespace Socle\AccentBundle\AccessControl;
+namespace Forge\AccentBundle\AccessControl;
 
 use Symfony\Component\Routing\Route;
 

@@ -1,20 +1,18 @@
 <?php
 
-
-namespace Socle\AccentBundle\DependencyInjection;
-
+namespace Forge\AccentBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class SocleAccentExtension extends Extension
+class ForgeAccentExtension extends Extension
 {
-
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
+     *
      * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container)

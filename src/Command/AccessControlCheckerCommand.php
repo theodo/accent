@@ -1,12 +1,12 @@
 <?php
 
-namespace Socle\AccentBundle\Command;
+namespace Forge\AccentBundle\Command;
 
 use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 use ApiPlatform\Core\Util\AttributesExtractor;
-use Socle\AccentBundle\AccessControl\RouteAccessControlData;
-use Socle\AccentBundle\Descriptor\AccessControlDescriptor;
+use Forge\AccentBundle\AccessControl\RouteAccessControlData;
+use Forge\AccentBundle\Descriptor\AccessControlDescriptor;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +21,7 @@ class AccessControlCheckerCommand extends Command
     const RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND';
     const RESOURCE_UNRELATED_ROUTE = 'RESOURCE_UNRELATED_ROUTE';
 
-    protected static $defaultName = 'socle:access-control';
+    protected static $defaultName = 'forge:access-control';
     private $router;
     private $resourceMetadataFactory;
     private $unprotectedRoutes = 0;

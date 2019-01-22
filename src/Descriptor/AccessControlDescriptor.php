@@ -2,8 +2,10 @@
 
 namespace Socle\AccentBundle\Descriptor;
 
-use Socle\AccentBundle\AccessControl\RouteAccessControlData;
-use Socle\AccentBundle\Command\AccessControlCheckerCommand;
+namespace Forge\AccentBundle\Descriptor;
+
+use Forge\AccentBundle\AccessControl\RouteAccessControlData;
+use Forge\AccentBundle\Command\AccessControlCheckerCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
