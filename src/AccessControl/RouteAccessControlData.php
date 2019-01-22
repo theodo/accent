@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Forge\AccentBundle\AccessControl;
 
 use Symfony\Component\Routing\Route;

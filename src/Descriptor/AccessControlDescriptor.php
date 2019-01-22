@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Forge\AccentBundle\Descriptor;
 
 use Forge\AccentBundle\AccessControl\RouteAccessControlData;
@@ -10,15 +12,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AccessControlDescriptor
 {
     const ACCESS_CONTROL_TRANSLATIONS = [
-      AccessControlCheckerCommand::NO_ACCESS_CONTROL => '<fg=white;bg=red>No access control.</>',
-      AccessControlCheckerCommand::NOT_API_PLATFORM_ROUTE => 'This route is not linked to API Platform.',
-      AccessControlCheckerCommand::RESOURCE_NOT_FOUND => 'The resource linked to his route was not found.',
-      AccessControlCheckerCommand::RESOURCE_UNRELATED_ROUTE => 'This route is not linked to a resource',
+        AccessControlCheckerCommand::NO_ACCESS_CONTROL => '<fg=white;bg=red>No access control.</>',
+        AccessControlCheckerCommand::NOT_API_PLATFORM_ROUTE => 'This route is not linked to API Platform.',
+        AccessControlCheckerCommand::RESOURCE_NOT_FOUND => 'The resource linked to his route was not found.',
+        AccessControlCheckerCommand::RESOURCE_UNRELATED_ROUTE => 'This route is not linked to a resource',
     ];
     private $output;
 
     /**
-     * @param OutputInterface $output
+     * @param OutputInterface          $output
      * @param RouteAccessControlData[] $routeAccessControlData
      */
     public function describe(OutputInterface $output, array $routeAccessControlData)
