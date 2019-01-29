@@ -1,7 +1,7 @@
 {
     "name": "forge/accent-bundle",
     "description": "Access Control Checker Easy Neat Thorough",
-    "type": "static-analysis-tool",
+    "type": "symfony-bundle",
     "require": {
         "php": "^7.1",
         "symfony/config": "^4.0",
