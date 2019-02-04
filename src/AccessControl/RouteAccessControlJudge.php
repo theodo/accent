@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Forge\AccentBundle\AccessControl;
+
+class RouteAccessControlJudge
+{
+    const API_PLATFORM_DOCUMENTATION_ROUTES = [
+        'api_entrypoint',
+        'api_doc',
+        'api_jsonld_context',
+    ];
+
+    /**
+     * @param string $routeName
+     * @param string $expression
+     *
+     * @return bool
+     */
+    public function isAccessControlCorrect(string $routeName, string $expression): bool
+    {
+        if ($this->hasNoAccessControl($expression)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param string $expression
+     *
+     * @return bool
+     */
+    protected function hasNoAccessControl(string $expression): bool
+    {
+        return RouteAccessControlData::NO_ACCESS_CONTROL === $expression;
+    }
+}
