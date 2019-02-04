@@ -24,6 +24,10 @@ class RouteAccessControlJudge
             return false;
         }
 
+        if ($this->isUnnecessaryExposedApiPlatformDocumentationRoute($routeName)) {
+            return false;
+        }
+
         return true;
     }
 
@@ -35,5 +39,15 @@ class RouteAccessControlJudge
     protected function hasNoAccessControl(string $expression): bool
     {
         return RouteAccessControlData::NO_ACCESS_CONTROL === $expression;
+    }
+
+    /**
+     * @param string $routeName
+     *
+     * @return bool
+     */
+    protected function isUnnecessaryExposedApiPlatformDocumentationRoute(string $routeName): bool
+    {
+        return \in_array($routeName, self::API_PLATFORM_DOCUMENTATION_ROUTES, true);
     }
 }
