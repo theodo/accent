@@ -5,10 +5,25 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service class="Forge\AccentBundle\AccessControl\RouteAccessControlJudge"
+                 id="forge_accent.route_access_control_judge"
+        >
+        </service>
+        <service class="Forge\AccentBundle\AccessControl\RouteAccessControlFactory"
+                 id="forge_accent.route_access_control_extractor"
+        >
+            <argument type="service" id="api_platform.metadata.resource.metadata_factory" />
+            <argument type="service" id="forge_accent.route_access_control_judge" />
+        </service>
+        <service class="Forge\AccentBundle\AccessControl\AccentReportFactory"
+                 id="forge_accent.accent_report_factory">
+            <argument type="service" id="forge_accent.route_access_control_extractor" />
+            <argument type="service" id="forge_accent.route_access_control_judge" />
+            <argument type="service" id="router" />
+        </service>
         <service class="Forge\AccentBundle\Command\AccessControlCheckerCommand"
                  id="forge_accent.access_control_checker_command">
-            <argument type="service" id="router"/>
-            <argument type="service" id="api_platform.metadata.resource.metadata_factory"/>
+            <argument type="service" id="forge_accent.accent_report_factory"/>
             <tag name="console.command"/>
         </service>
         <service id="Forge\AccentBundle\Command\AccessControlCheckerCommand"

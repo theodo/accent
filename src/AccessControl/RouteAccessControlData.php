@@ -8,9 +8,15 @@ use Symfony\Component\Routing\Route;
 
 class RouteAccessControlData
 {
+    const NO_ACCESS_CONTROL = 'NO_ACCESS_CONTROL';
+    const NOT_API_PLATFORM_ROUTE = 'NOT_API_PLATFORM_ROUTE';
+    const RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND';
+    const RESOURCE_UNRELATED_ROUTE = 'RESOURCE_UNRELATED_ROUTE';
+
     private $route;
     private $routeName;
     private $expression;
+    private $correct;
 
     /**
      * @return string
@@ -58,5 +64,21 @@ class RouteAccessControlData
     public function setExpression(string $expression): void
     {
         $this->expression = $expression;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCorrect(): bool
+    {
+        return $this->correct;
+    }
+
+    /**
+     * @param bool $correct
+     */
+    public function setCorrect(bool $correct): void
+    {
+        $this->correct = $correct;
     }
 }
