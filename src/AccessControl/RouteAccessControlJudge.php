@@ -9,7 +9,6 @@ class RouteAccessControlJudge
     const API_PLATFORM_DOCUMENTATION_ROUTES = [
         'api_entrypoint',
         'api_doc',
-        'api_jsonld_context',
     ];
 
     /**
