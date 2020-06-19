@@ -76,7 +76,7 @@ class RouteAccessControlFactory
             try {
                 $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
                 $attributes = AttributesExtractor::extractAttributes($route->getDefaults());
-                $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'access_control', null, true);
+                $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'security', null, true);
                 if (null === $isGranted) {
                     $isGranted = RouteAccessControlData::NO_ACCESS_CONTROL;
                 }
