@@ -76,8 +76,9 @@ class RouteAccessControlFactory
             try {
                 $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
                 $attributes = AttributesExtractor::extractAttributes($route->getDefaults());
-                $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'security', null, true);
-                if (null === $isGranted) {
+                $securityAttribute = $resourceMetadata->getOperationAttribute($attributes, 'security', null, true);
+                $securityPostDenormalizeAttribute = $resourceMetadata->getOperationAttribute($attributes, 'security_post_denormalize', null, true);
+                if (null === $securityAttribute && null === $securityPostDenormalizeAttribute) {
                     $isGranted = RouteAccessControlData::NO_ACCESS_CONTROL;
                 }
             } catch (ResourceClassNotFoundException $e) {
