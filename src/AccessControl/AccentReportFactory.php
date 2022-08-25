@@ -23,9 +23,6 @@ class AccentReportFactory
         $this->router = $router;
     }
 
-    /**
-     * @return AccentReport
-     */
     public function createAccentReport(): AccentReport
     {
         $routes = $this->router->getRouteCollection();
@@ -40,8 +37,6 @@ class AccentReportFactory
     }
 
     /**
-     * @param RouteCollection $routes
-     *
      * @return RouteAccessControlData[]
      */
     public function getAllRoutesAccessControlData(RouteCollection $routes): array

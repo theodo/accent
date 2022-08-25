@@ -33,9 +33,6 @@ class AccentReport
         return $this->unprotectedRoutesCount;
     }
 
-    /**
-     * @param int $unprotectedRoutesCount
-     */
     public function setUnprotectedRoutesCount(int $unprotectedRoutesCount): void
     {
         $this->unprotectedRoutesCount = $unprotectedRoutesCount;
