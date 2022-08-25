@@ -17,4 +17,3 @@ Add the path to the private repository in your composer.json:
 ```
 composer require --dev forge/accent-bundle
 ```
-Github will ask you to create a token and to paste it so that it can download the private Github repository.
