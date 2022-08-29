@@ -22,12 +22,6 @@ class RouteAccessControlFactory
         $this->judge = $routeAccessControlJudge;
     }
 
-    /**
-     * @param string $name
-     * @param Route  $route
-     *
-     * @return RouteAccessControlData
-     */
     public function createRouteAccessControlData(string $name, Route $route): RouteAccessControlData
     {
         $controller = $route->getDefault('_controller');
@@ -49,11 +43,6 @@ class RouteAccessControlFactory
         return $accessControlRouteData;
     }
 
-    /**
-     * @param string $controller
-     *
-     * @return bool
-     */
     protected function isControllerCorrespondingToApiPlatform(string $controller): bool
     {
         $apiPlatformPrefix = 'api_platform';
@@ -61,11 +50,6 @@ class RouteAccessControlFactory
         return 0 === mb_strpos($controller, $apiPlatformPrefix);
     }
 
-    /**
-     * @param Route $route
-     *
-     * @return string
-     */
     protected function getAccessControlExpressionForApiPlatform(Route $route): string
     {
         $resourceClass = $route->getDefault('_api_resource_class');

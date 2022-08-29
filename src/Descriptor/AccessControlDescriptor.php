@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class AccessControlDescriptor
 {
-    const ACCESS_CONTROL_TRANSLATIONS = [
+    public const ACCESS_CONTROL_TRANSLATIONS = [
         RouteAccessControlData::NO_ACCESS_CONTROL => '<fg=white;bg=red>No access control.</>',
         RouteAccessControlData::NOT_API_PLATFORM_ROUTE => 'This route is not linked to API Platform.',
         RouteAccessControlData::RESOURCE_NOT_FOUND => 'The resource linked to his route was not found.',
@@ -19,7 +19,6 @@ class AccessControlDescriptor
     private $output;
 
     /**
-     * @param OutputInterface          $output
      * @param RouteAccessControlData[] $routeAccessControlData
      */
     public function describe(OutputInterface $output, array $routeAccessControlData)
@@ -46,9 +45,6 @@ class AccessControlDescriptor
         $table->render();
     }
 
-    /**
-     * @return OutputInterface
-     */
     public function getOutput(): OutputInterface
     {
         return $this->output;

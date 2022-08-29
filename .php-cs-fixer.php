@@ -1,11 +1,11 @@
 <?php
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
    ->in(
        [
            __DIR__.'/src'
        ]
    );
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setUsingCache(false) // cache is always an issue when you switch branch because the cached file is ignored by git
@@ -26,10 +26,10 @@ return PhpCsFixer\Config::create()
         'mb_str_functions' => true,
         'modernize_types_casting' => true,
         'no_alternative_syntax' => true,
-        'no_multiline_whitespace_before_semicolons' => true,
+        'multiline_whitespace_before_semicolons' => true,
         'no_null_property_initialization' => true,
         'no_php4_constructor' => true,
-        'no_short_echo_tag' => true,
+        'echo_tag_syntax' => ['format' => 'long'],
         'no_superfluous_elseif' => true,
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,
