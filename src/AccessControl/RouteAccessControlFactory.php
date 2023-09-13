@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Forge\AccentBundle\AccessControl;
 
 use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
-use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
-use ApiPlatform\Core\Util\AttributesExtractor;
+use ApiPlatform\Exception\OperationNotFoundException;
+use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use Symfony\Component\Routing\Route;
 
 class RouteAccessControlFactory
@@ -15,7 +15,7 @@ class RouteAccessControlFactory
     private $judge;
 
     public function __construct(
-        ResourceMetadataFactoryInterface $resourceMetadataFactory,
+        ResourceMetadataCollectionFactoryInterface $resourceMetadataFactory,
         RouteAccessControlJudge $routeAccessControlJudge
     ) {
         $this->resourceMetadataFactory = $resourceMetadataFactory;
@@ -53,19 +53,23 @@ class RouteAccessControlFactory
     protected function getAccessControlExpressionForApiPlatform(Route $route): string
     {
         $resourceClass = $route->getDefault('_api_resource_class');
+        $operationName = $route->getDefault('_api_operation_name');
 
         $isGranted = RouteAccessControlData::RESOURCE_UNRELATED_ROUTE;
 
         if ($resourceClass) {
             try {
                 $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
-                $attributes = AttributesExtractor::extractAttributes($route->getDefaults());
-                $isGranted = $resourceMetadata->getOperationAttribute($attributes, 'security', null, true);
+                $operation = $resourceMetadata->getOperation($operationName);
+
+                $isGranted = $operation->getSecurity();
                 if (null === $isGranted) {
                     $isGranted = RouteAccessControlData::NO_ACCESS_CONTROL;
                 }
             } catch (ResourceClassNotFoundException $e) {
                 $isGranted = RouteAccessControlData::RESOURCE_NOT_FOUND;
+            } catch (OperationNotFoundException $e) {
+                $isGranted = RouteAccessControlData::OPERATION_NOT_FOUND;
             }
         }
 

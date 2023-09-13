@@ -11,6 +11,7 @@ class RouteAccessControlData
     public const NO_ACCESS_CONTROL = 'NO_ACCESS_CONTROL';
     public const NOT_API_PLATFORM_ROUTE = 'NOT_API_PLATFORM_ROUTE';
     public const RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND';
+    public const OPERATION_NOT_FOUND = 'OPERATION_NOT_FOUND';
     public const RESOURCE_UNRELATED_ROUTE = 'RESOURCE_UNRELATED_ROUTE';
 
     private $route;

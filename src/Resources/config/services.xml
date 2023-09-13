@@ -12,7 +12,7 @@
         <service class="Forge\AccentBundle\AccessControl\RouteAccessControlFactory"
                  id="forge_accent.route_access_control_extractor"
         >
-            <argument type="service" id="api_platform.metadata.resource.metadata_factory" />
+            <argument type="service" id="api_platform.metadata.resource.metadata_collection_factory" />
             <argument type="service" id="forge_accent.route_access_control_judge" />
         </service>
         <service class="Forge\AccentBundle\AccessControl\AccentReportFactory"
