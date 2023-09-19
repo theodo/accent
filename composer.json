@@ -2,6 +2,7 @@
     "name": "forge/accent-bundle",
     "description": "Access Control Checker Easy Neat Thorough",
     "type": "symfony-bundle",
+    "keywords": ["security","api-platform","symfony","acl","checks"],
     "require": {
         "php": "^8.0",
         "symfony/config": "^6.0",
@@ -21,6 +22,10 @@
         {
             "name": "Paul Molin",
             "email": "paulm@theodo.fr"
+        },
+        {
+            "name": "Kevin Raynel",
+            "email": "kevinr@theodo.fr"
         }
     ],
     "require-dev": {
