@@ -1,5 +1,5 @@
 {
-    "name": "forge/accent-bundle",
+    "name": "theodo/accent-bundle",
     "description": "Access Control Checker Easy Neat Thorough",
     "type": "symfony-bundle",
     "keywords": ["security","api-platform","symfony","acl","checks"],
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Forge\\AccentBundle\\": "src/"
+            "Theodo\\AccentBundle\\": "src/"
         }
     },
     "license": "MIT",

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Forge\AccentBundle\AccessControl;
+namespace Theodo\AccentBundle\AccessControl;
 
 use ApiPlatform\Exception\OperationNotFoundException;
 use ApiPlatform\Exception\ResourceClassNotFoundException;

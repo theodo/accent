@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Forge\AccentBundle\Command;
+namespace Theodo\AccentBundle\Command;
 
-use Forge\AccentBundle\AccessControl\AccentReportFactory;
-use Forge\AccentBundle\Descriptor\AccessControlDescriptor;
+use Theodo\AccentBundle\AccessControl\AccentReportFactory;
+use Theodo\AccentBundle\Descriptor\AccessControlDescriptor;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand('forge:access-control', 'Check access control for each route.')]
+#[AsCommand('theodo:access-control', 'Check access control for each route.')]
 class AccessControlCheckerCommand extends Command
 {
     private $accentReportFactory;
