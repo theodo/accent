@@ -4,22 +4,17 @@ declare(strict_types=1);
 
 namespace Forge\AccentBundle\AccessControl;
 
-use ApiPlatform\Core\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Exception\OperationNotFoundException;
+use ApiPlatform\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use Symfony\Component\Routing\Route;
 
 class RouteAccessControlFactory
 {
-    private $resourceMetadataFactory;
-    private $judge;
-
     public function __construct(
-        ResourceMetadataCollectionFactoryInterface $resourceMetadataFactory,
-        RouteAccessControlJudge $routeAccessControlJudge
+        private ?ResourceMetadataCollectionFactoryInterface $resourceMetadataCollectionFactory,
+        private RouteAccessControlJudge $judge
     ) {
-        $this->resourceMetadataFactory = $resourceMetadataFactory;
-        $this->judge = $routeAccessControlJudge;
     }
 
     public function createRouteAccessControlData(string $name, Route $route): RouteAccessControlData
@@ -59,7 +54,7 @@ class RouteAccessControlFactory
 
         if ($resourceClass) {
             try {
-                $resourceMetadata = $this->resourceMetadataFactory->create($resourceClass);
+                $resourceMetadata = $this->resourceMetadataCollectionFactory->create($resourceClass);
                 $operation = $resourceMetadata->getOperation($operationName);
 
                 $isGranted = $operation->getSecurity();
