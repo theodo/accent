@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Forge\AccentBundle\Descriptor;
+namespace Theodo\AccentBundle\Descriptor;
 
-use Forge\AccentBundle\AccessControl\RouteAccessControlData;
+use Theodo\AccentBundle\AccessControl\RouteAccessControlData;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 

@@ -4,26 +4,14 @@ ACCENT (Access Control Checker Easy Neat Thorough) is a Symfony command to check
 
 ## Installation
 
-### Make sure composer knows how to access the bundle
-
-Add the path to the private repository in your composer.json:
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/theodo/accent"
-    }
-]
-```
-
 ### Require the bundle
 
 ```bash
-composer require --dev forge/accent-bundle
+composer require --dev theodo/accent-bundle
 ```
 
 ### Run the command
 
 ```bash
-bin/console forge:access-control
+bin/console theodo:access-control
 ```

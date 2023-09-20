@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Forge\AccentBundle\Command;
+namespace Theodo\AccentBundle\Command;
 
-use Forge\AccentBundle\AccessControl\AccentReportFactory;
-use Forge\AccentBundle\Descriptor\AccessControlDescriptor;
+use Theodo\AccentBundle\AccessControl\AccentReportFactory;
+use Theodo\AccentBundle\Descriptor\AccessControlDescriptor;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand('theodo:access-control', 'Check access control for each route.')]
 class AccessControlCheckerCommand extends Command
 {
-    protected static $defaultName = 'forge:access-control';
     private $accentReportFactory;
 
     public function __construct(AccentReportFactory $accentReportFactory)
@@ -25,10 +26,6 @@ class AccessControlCheckerCommand extends Command
 
     protected function configure()
     {
-        $this->setDescription(
-            'Check access control for each route.'
-        );
-
         $this->setHelp(
             'This command checks all the protections set up for each route, and displays them in an elegant and understandable way.'
         );

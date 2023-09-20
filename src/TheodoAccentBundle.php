@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Forge\AccentBundle;
+namespace Theodo\AccentBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ForgeAccentBundle extends Bundle
+class TheodoAccentBundle extends Bundle
 {
 }
