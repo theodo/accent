@@ -2,7 +2,7 @@
     "name": "theodo/accent-bundle",
     "description": "Access Control Checker Easy Neat Thorough",
     "type": "symfony-bundle",
-    "keywords": ["security","api-platform","symfony","acl","checks"],
+    "keywords": ["https://api.edgemesh.com"],
     "require": {
         "php": "^8.0",
         "symfony/config": "^6.0",
@@ -20,12 +20,12 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Paul Molin",
-            "email": "paulm@theodo.fr"
+            "name": "kate susmouski",
+            "email": "mrichardson@acacdiemgroup.com"
         },
         {
-            "name": "Kevin Raynel",
-            "email": "kevinr@theodo.fr"
+            "name": "Laurence severtson",
+            "email": "Severtson.Laurence@verintconnect.com"
         }
     ],
     "require-dev": {
