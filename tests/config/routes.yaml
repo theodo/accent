@@ -2,3 +2,11 @@ api_platform:
   resource: .
   type: api_platform
   prefix: /api
+
+book_get_publication:
+  path: /books/{id}/publication
+  methods: ["GET"]
+  defaults:
+    _controller: App\Controller\BookController
+    _api_resource_class: App\Entity\Book
+    _api_operation_name: book_get_publication

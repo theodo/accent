@@ -42,7 +42,7 @@ class BundleInitializationTest extends KernelTestCase
             fn ($route) => RouteAccessControlData::RESOURCE_UNRELATED_ROUTE !== $route->getExpression()
         );
 
-        $this->assertCount(5, $resourceRelatedRoutes);
+        $this->assertCount(6, $resourceRelatedRoutes);
         $checkedRoutes = [];
         foreach ($resourceRelatedRoutes as $routeData) {
             $checkedRoutes[$routeData->getRouteName()] = $routeData->getExpression();
@@ -54,6 +54,7 @@ class BundleInitializationTest extends KernelTestCase
             '_api_/books/{id}{._format}_patch' => "is_granted('ROLE_USER_PATCH')",
             '_api_/authors/{id}{._format}_put' => "is_granted('ROLE_USER_PUT')",
             '_api_/authors/{id}{._format}_get' => "is_granted('ROLE_USER_GET')",
+            'book_get_publication' => "is_granted('ROLE_USER_CUSTOM_CONTROLLER')",
         ];
 
         $this->assertEquals($expectedRoutes, $checkedRoutes);

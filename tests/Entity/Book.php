@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Post;
 
 #[ApiResource(security: "is_granted('ROLE_USER_DEFAULT')")]
 #[Get(security: "is_granted('ROLE_USER_GET')")]
+#[Get(name: 'publication', routeName: 'book_get_publication', security: "is_granted('ROLE_USER_CUSTOM_CONTROLLER')")]
 #[Post]
 #[Patch(security: "is_granted('ROLE_USER_PATCH')")]
 class Book
