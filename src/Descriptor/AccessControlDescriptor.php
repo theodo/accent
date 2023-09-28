@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Theodo\AccentBundle\Descriptor;
 
-use Theodo\AccentBundle\AccessControl\RouteAccessControlData;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
+use Theodo\AccentBundle\AccessControl\RouteAccessControlData;
 
 class AccessControlDescriptor
 {
@@ -14,8 +14,10 @@ class AccessControlDescriptor
         RouteAccessControlData::NO_ACCESS_CONTROL => '<fg=white;bg=red>No access control.</>',
         RouteAccessControlData::NOT_API_PLATFORM_ROUTE => 'This route is not linked to API Platform.',
         RouteAccessControlData::RESOURCE_NOT_FOUND => 'The resource linked to his route was not found.',
+        RouteAccessControlData::OPERATION_NOT_FOUND => 'This route does not seem to be linked to a valid operation.',
         RouteAccessControlData::RESOURCE_UNRELATED_ROUTE => 'This route is not linked to a resource',
     ];
+
     private $output;
 
     /**

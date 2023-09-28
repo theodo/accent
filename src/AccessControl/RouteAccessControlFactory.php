@@ -57,7 +57,7 @@ class RouteAccessControlFactory
                 $resourceMetadata = $this->resourceMetadataCollectionFactory->create($resourceClass);
                 $operation = $resourceMetadata->getOperation($operationName);
 
-                $isGranted = $operation->getSecurity();
+                $isGranted = $operation->getSecurity() ?? $operation->getSecurityPostDenormalize();
                 if (null === $isGranted) {
                     $isGranted = RouteAccessControlData::NO_ACCESS_CONTROL;
                 }
