@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Theodo\AccentBundle\Command;
 
-use Theodo\AccentBundle\AccessControl\AccentReportFactory;
-use Theodo\AccentBundle\Descriptor\AccessControlDescriptor;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Theodo\AccentBundle\AccessControl\AccentReportFactory;
+use Theodo\AccentBundle\Descriptor\AccessControlDescriptor;
 
 #[AsCommand('theodo:access-control', 'Check access control for each route.')]
 class AccessControlCheckerCommand extends Command
@@ -54,7 +54,7 @@ class AccessControlCheckerCommand extends Command
 
         $output->writeln($accentReport->getUnprotectedRoutesCount().' unprotected route(s)');
 
-        $exitCode = (0 < $accentReport->getUnprotectedRoutesCount()) ? 1 : 0;
+        $exitCode = (0 < $accentReport->getUnprotectedRoutesCount()) ? Command::FAILURE : Command::SUCCESS;
 
         return $exitCode;
     }

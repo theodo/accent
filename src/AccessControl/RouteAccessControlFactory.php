@@ -19,11 +19,8 @@ class RouteAccessControlFactory
 
     public function createRouteAccessControlData(string $name, Route $route): RouteAccessControlData
     {
-        $controller = $route->getDefault('_controller');
-
         $expression = RouteAccessControlData::NOT_API_PLATFORM_ROUTE;
-
-        if ($controller && $this->isControllerCorrespondingToApiPlatform($controller)) {
+        if ($this->isControllerCorrespondingToApiPlatform($route)) {
             $expression = $this->getAccessControlExpressionForApiPlatform($route);
         }
 
@@ -38,11 +35,14 @@ class RouteAccessControlFactory
         return $accessControlRouteData;
     }
 
-    protected function isControllerCorrespondingToApiPlatform(string $controller): bool
+    protected function isControllerCorrespondingToApiPlatform(Route $route): bool
     {
+        $controller = $route->getDefault('_controller');
+        $resourceClass = $route->getDefault('_api_resource_class');
+
         $apiPlatformPrefix = 'api_platform';
 
-        return 0 === mb_strpos($controller, $apiPlatformPrefix);
+        return 0 === mb_strpos($controller, $apiPlatformPrefix) || null !== $resourceClass;
     }
 
     protected function getAccessControlExpressionForApiPlatform(Route $route): string
@@ -57,7 +57,7 @@ class RouteAccessControlFactory
                 $resourceMetadata = $this->resourceMetadataCollectionFactory->create($resourceClass);
                 $operation = $resourceMetadata->getOperation($operationName);
 
-                $isGranted = $operation->getSecurity();
+                $isGranted = $operation->getSecurity() ?? $operation->getSecurityPostDenormalize();
                 if (null === $isGranted) {
                     $isGranted = RouteAccessControlData::NO_ACCESS_CONTROL;
                 }
