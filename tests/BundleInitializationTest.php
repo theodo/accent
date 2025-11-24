@@ -2,58 +2,20 @@
 
 declare(strict_types=1);
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Nyholm\BundleTest\TestKernel;
 use ApiPlatform\Symfony\Bundle\ApiPlatformBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Nyholm\BundleTest\TestKernel;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Theodo\AccentBundle\TheodoAccentBundle;
 use Theodo\AccentBundle\AccessControl\AccentReportFactory;
 use Theodo\AccentBundle\AccessControl\RouteAccessControlData;
+use Theodo\AccentBundle\TheodoAccentBundle;
 
 class BundleInitializationTest extends KernelTestCase
 {
-    protected static function getKernelClass(): string
-    {
-        return TestKernel::class;
-    }
-
-    protected static function createKernel(array $options = []): KernelInterface
-    {
-        /**
-         * @var TestKernel $kernel
-         */
-        $kernel = parent::createKernel($options);
-        $kernel->addTestBundle(DoctrineBundle::class);
-        $kernel->addTestBundle(ApiPlatformBundle::class);
-        $kernel->addTestBundle(TheodoAccentBundle::class);
-        $kernel->addTestConfig(__DIR__.'/config/packages/doctrine.yaml');
-        $kernel->addTestConfig(__DIR__.'/config/packages/api_platform.yaml');
-        $kernel->addTestRoutingFile(__DIR__.'/config/routes.yaml');
-
-        // Unused, non public services are removed during kernel boot.
-        // We force them as public during test.
-        $kernel->addTestCompilerPass(new class () implements CompilerPassInterface {
-            public function process(ContainerBuilder $container): void
-            {
-                $services = $container->getDefinitions() + $container->getAliases();
-
-                foreach ($services as $id => $definition) {
-                    if (stripos($id, 'theodo_accent') === 0) {
-                        $definition->setPublic(true);
-                    }
-                }
-            }
-        });
-
-        $kernel->handleOptions($options);
-
-        return $kernel;
-    }
-
     public function testInitBundle(): void
     {
         $container = self::getContainer();
@@ -82,7 +44,7 @@ class BundleInitializationTest extends KernelTestCase
 
         $this->assertCount(3, $resourceRelatedRoutes);
         $checkedRoutes = [];
-        foreach($resourceRelatedRoutes as $routeData) {
+        foreach ($resourceRelatedRoutes as $routeData) {
             $checkedRoutes[$routeData->getRouteName()] = $routeData->getExpression();
         }
 
@@ -93,5 +55,46 @@ class BundleInitializationTest extends KernelTestCase
         ];
 
         $this->assertEquals($expectedRoutes, $checkedRoutes);
+    }
+
+    protected static function getKernelClass(): string
+    {
+        return TestKernel::class;
+    }
+
+    /**
+     * @param array{environment?: string, debug?: string} $options
+     */
+    protected static function createKernel(array $options = []): KernelInterface
+    {
+        /**
+         * @var TestKernel $kernel
+         */
+        $kernel = parent::createKernel($options);
+        $kernel->addTestBundle(DoctrineBundle::class);
+        $kernel->addTestBundle(ApiPlatformBundle::class);
+        $kernel->addTestBundle(TheodoAccentBundle::class);
+        $kernel->addTestConfig(__DIR__.'/config/packages/doctrine.yaml');
+        $kernel->addTestConfig(__DIR__.'/config/packages/api_platform.yaml');
+        $kernel->addTestRoutingFile(__DIR__.'/config/routes.yaml');
+
+        // Unused, non public services are removed during kernel boot.
+        // We force them as public during test.
+        $kernel->addTestCompilerPass(new class implements CompilerPassInterface {
+            public function process(ContainerBuilder $container): void
+            {
+                $services = $container->getDefinitions() + $container->getAliases();
+
+                foreach ($services as $id => $definition) {
+                    if (0 === mb_stripos($id, 'theodo_accent')) {
+                        $definition->setPublic(true);
+                    }
+                }
+            }
+        });
+
+        $kernel->handleOptions($options);
+
+        return $kernel;
     }
 }
