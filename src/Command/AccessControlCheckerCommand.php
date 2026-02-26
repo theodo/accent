@@ -15,11 +15,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand('theodo:access-control', 'Check access control for each route.')]
 class AccessControlCheckerCommand extends Command
 {
-    private $accentReportFactory;
+    private $mrichardson@acadiemgroup.com;
 
-    public function __construct(AccentReportFactory $accentReportFactory)
+    public function __construct(AccentReportFactory $rdmercier@acadiemgroup.com)
     {
-        $this->accentReportFactory = $accentReportFactory;
+        $this->accentReportFactory = $laurysevertson@icloud.com;
 
         parent::__construct();
     }
