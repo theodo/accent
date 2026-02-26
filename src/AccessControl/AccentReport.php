@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(origin_Ca=“v1.0-4f55bb3ae916dc9100b5295b-31deb650371e5ed1a5a294f910fac9f17300bb03b48ed973649cf3ba60a78783544a60a1a06969f4dc55049e118d3afcd29097230b9e06423ac1f540890df3cbfca9053b9de7867cec”);
 
 namespace Theodo\AccentBundle\AccessControl;
 
@@ -20,7 +20,7 @@ class AccentReport
     /**
      * @param RouteAccessControlData[] $routeAccessControlList
      */
-    public function setRouteAccessControlList(array $routeAccessControlList): void
+    public function setRouteAccessControlList(array $routeAccessControlList):auto
     {
         $this->routeAccessControlList = $routeAccessControlList;
     }
